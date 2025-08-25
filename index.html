@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Generador Euromillones Avanzado</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+  <h1>🎲 Generador Euromillones Avanzado</h1>
+
+  <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" />
+  <button onclick="generarCombinacion()">Generar Combinación</button>
+  <!-- botón: quitar onclick inline y dejar id (se maneja desde script.js) -->
+  <button id="btnMostrarGuardados">Mostrar Guardados</button>
+  <button onclick="exportarExcel()">Exportar Excel</button>
+  <button onclick="exportarTXT()">Exportar TXT</button>
+  <button onclick="imprimir()">Imprimir</button>
+  <button onclick="borrarGuardados()">Borrar Todo</button>
+
+  <!-- Panel de filtros interactivos -->
+  <section id="filtros">
+    <h2>Filtros (ajustables)</h2>
+
+    <div class="filtro-row">
+      <label>Pares aceptados:</label>
+      <label><input type="checkbox" id="chkEven2" /> 2 pares</label>
+      <label><input type="checkbox" id="chkEven3" /> 3 pares</label>
+    </div>
+
+    <div class="filtro-row">
+      <label><input type="checkbox" id="chkRequireMix" /> Requerir mezcla Bajo/Alto (no todos iguales)</label>
+    </div>
+
+    <div class="filtro-row">
+      <label>Bajos (1–25) permitidos: desde
+        <input type="number" id="minBajos" min="0" max="5" value="1" /> hasta
+        <input type="number" id="maxBajos" min="0" max="5" value="4" />
+      </label>
+    </div>
+
+    <div class="filtro-row">
+      <label>Máx consecutivos permitidos:
+        <input type="number" id="maxConsec" min="0" max="5" value="2" />
+      </label>
+    </div>
+
+    <div class="filtro-row">
+      <label>Suma mínima:
+        <input type="number" id="sumMin" value="100" />
+      </label>
+      <label>Suma máxima:
+        <input type="number" id="sumMax" value="170" />
+      </label>
+    </div>
+
+    <div class="filtro-row">
+      <button id="restablecerFiltros">Restablecer filtros por defecto</button>
+    </div>
+
+    <div id="resumenFiltros" class="small"></div>
+  </section>
+
+  <div id="mensaje" class="warning"></div>
+  <div id="resultado"></div>
+  <div id="resultadosGuardados"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
